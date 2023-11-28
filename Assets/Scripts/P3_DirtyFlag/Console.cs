@@ -15,6 +15,7 @@ public class Console : MonoBehaviour
     private int _blueParameter;
     private Color _computedColor;
     private int _tick;
+    private bool _isDirty;
 
 #region information on how many updates would've been necessary
     private Color _previousColor; // IGNORE THIS
@@ -65,7 +66,8 @@ public class Console : MonoBehaviour
     {
         this._redParameter = red;
         // When the parameter has changed, the computed parameter needs to be updated
-        CalculateComputedDataFromParameters();
+        // CalculateComputedDataFromParameters();
+        this._isDirty = true;
     }
 
     /// <summary>
@@ -76,7 +78,8 @@ public class Console : MonoBehaviour
     {
         this._greenParameter = green;
         // When the parameter has changed, the computed parameter needs to be updated
-        CalculateComputedDataFromParameters();
+        // CalculateComputedDataFromParameters();
+        this._isDirty = true;
     }
 
     /// <summary>
@@ -87,7 +90,8 @@ public class Console : MonoBehaviour
     {
         this._blueParameter = blue;
         // When the parameter has changed, the computed parameter needs to be updated
-        CalculateComputedDataFromParameters();
+        // CalculateComputedDataFromParameters();
+        this._isDirty = true;
     }
 
     /// <summary>
@@ -107,7 +111,7 @@ public class Console : MonoBehaviour
     bool ShouldUseComputedParameterThisFrame()
     {
         this._tick++;
-        return this._tick % 50 == 0;
+        return this._tick % 50 == 0 && this._isDirty;
     }
 
     void UtilizeComputedParameter()
@@ -121,6 +125,7 @@ public class Console : MonoBehaviour
         Debug.Log($"Updated: {_totalUpdateCount}/{_requiredUpdateCount} times."); // IGNORE THIS
         #endregion // debug information on how many updates would've been necessary
             
+        CalculateComputedDataFromParameters();
         this._spriteRenderer.color = this._computedColor;
     }
 }
