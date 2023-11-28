@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 1546557892}
   - component: {fileID: 1546557895}
   - component: {fileID: 1546557896}
+  - component: {fileID: 1546557897}
   m_Layer: 6
   m_Name: Castle
   m_TagString: Player
@@ -267,6 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 1289660090561212086, guid: 3e2d8f3089cbc437c9bed8d454efa6a7, type: 3}
+  PoolRef: {fileID: 0}
 --- !u!58 &1546557896
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -302,6 +304,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1546557897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546557891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7c0919ff026244b8ea8ccca6a42d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 1289660090561212086, guid: 3e2d8f3089cbc437c9bed8d454efa6a7, type: 3}
+  _initialSize: 1000
 --- !u!1 &1633618191
 GameObject:
   m_ObjectHideFlags: 0
