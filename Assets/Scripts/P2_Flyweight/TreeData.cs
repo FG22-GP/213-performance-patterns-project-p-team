@@ -1,7 +1,6 @@
-﻿using P2_Flyweight;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace P1_Pooling {
+namespace P2_Flyweight {
     public class TreeData : MonoBehaviour {
         public static TreeSeasonColors TreeSeasonColors { get; private set; }
 
