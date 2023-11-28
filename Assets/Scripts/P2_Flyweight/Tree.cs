@@ -1,37 +1,24 @@
+using P1_Pooling;
 using UnityEngine;
 
-public class Tree : MonoBehaviour
-{
-    private SpriteRenderer _spriteRenderer;
-    private TreeSeasonColors _treeColors;
-    private int _tick;
-    
-    void Start()
-    {
-        this._spriteRenderer = GetComponent<SpriteRenderer>();
-        LoadColorInfos();
-        UpdateSeason();
-    }
-    
-    void FixedUpdate()
-    {
-        UpdateSeason();
-    }
+namespace P2_Flyweight {
+    public class Tree : MonoBehaviour {
+        private int _colourIndex;
+        private SpriteRenderer _spriteRenderer;
 
-    /// <summary>
-    /// In the Tree Colors, the Artist assigned very specific values for the seasoning tree.
-    /// Each tree needs to access their colors depending on how old they are.
-    /// Unfortunately, this solution uses up a lot of Memory :(
-    /// </summary>
-    void LoadColorInfos()
-    {
-        var fileContents = Resources.Load<TextAsset>("treeColors").text;
-        this._treeColors = JsonUtility.FromJson<TreeSeasonColors>(fileContents);
-    }
+        private void Start() {
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            UpdateSeason();
+        }
 
-    void UpdateSeason()
-    {
-        this._treeColors.MoveNext();
-        this._spriteRenderer.color = this._treeColors.CurrentColor;
+        private void FixedUpdate() {
+            UpdateSeason();
+        }
+
+        private void UpdateSeason() {
+            _colourIndex += 10;
+            _colourIndex %= TreeData.TreeSeasonColors.colors.Length;
+            _spriteRenderer.color = TreeData.TreeSeasonColors.GetColour(_colourIndex);
+        }
     }
 }
